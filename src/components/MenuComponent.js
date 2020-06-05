@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import Test from './test'
 
 
 class Menu extends Component {
@@ -14,8 +15,9 @@ class Menu extends Component {
      onSelectDish(dish)
         {
             this.setState({selectedDish : dish});
+            console.log(dish.name);
         }
-
+        
      renderDish(dish) 
         {
             if (dish != null)
@@ -57,9 +59,10 @@ class Menu extends Component {
                   {menu}
               
             </div>
-            <div>
-                { this.renderDish(this.state.selectedDish) }
-            </div>
+
+            
+            
+            <Test dish = { this.state.selectedDish } />
           </div>
         );
     }

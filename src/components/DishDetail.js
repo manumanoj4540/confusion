@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import '../App.css'
 
-class Test extends Component {
+class DishDetail extends Component {
     constructor(props)
     {
         super(props)
@@ -20,25 +20,29 @@ class Test extends Component {
                             <div className="adj" key={cur.id}>
                                 <p>{cur.comment} <br/>
                                    Rating : {cur.rating} <br/>
-                                   Author : {cur.author}
+                                   Author : {cur.author} <br/>
+                                   Date : {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cur.date)))}
                                 </p>
                             </div>                           
                         );                       
                     });
                     //console.log(comslist);
                     return(
-                    <div className="row">
-                        <Card className= "col-12 col-md-5" key={dish.id}>
-                            <CardImg top src={dish.image} alt={dish.name} />
-                            <CardBody>
-                              <CardTitle>{dish.name}</CardTitle>
-                              <CardText>{dish.description}</CardText>
-                            </CardBody>
-                        </Card>
+                    
+                    <div className="container">
+                        <div className="row">
+                            <Card className= "col-12 col-md-5" key={dish.id}>
+                                <CardImg top src={dish.image} alt={dish.name} />
+                                <CardBody>
+                                <CardTitle>{dish.name}</CardTitle>
+                                <CardText>{dish.description}</CardText>
+                                </CardBody>
+                            </Card>
 
-                        <div className="col-12 col-md text-center">
-                            <h2>Comments</h2>
-                            <div>{comslist}</div>
+                            <div className="col-12 col-md text-center">
+                                <h2>Comments</h2>
+                                <div>{comslist}</div>
+                            </div>
                         </div>
                     </div>
                  );
@@ -63,4 +67,4 @@ class Test extends Component {
 
 }
 
-export default Test ;
+export default DishDetail ;

@@ -14,7 +14,7 @@ class Test extends Component {
         { 
             console.log(dish);
             if (dish != null)
-                {   console.log(dish.comments);
+                {   //console.log(dish.comments);
                     let comslist = dish.comments.map((cur)=>{
                         return(
                             <div className="adj" key={cur.id}>

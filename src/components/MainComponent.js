@@ -4,7 +4,6 @@ import Menu from './MenuComponent';
 import { DISHES } from '../shared/dishes'
 import DishDetail from './DishDetail'
 
-
 class Main extends Component {
   constructor(props)
   {
@@ -30,6 +29,7 @@ class Main extends Component {
         </Navbar>
   
         <Menu dishes = {this.state.dishes} onClick={(dish) => this.onSelectDish(dish)} />
+
         <DishDetail dish = { this.state.selectedDish } />
       </div>
     );

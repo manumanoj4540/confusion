@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
 import Menu from './MenuComponent';
 import { DISHES } from '../shared/dishes'
 import DishDetail from './DishDetail'
+import Header from './HeaderComponent'
 
 class Main extends Component {
   constructor(props)
@@ -22,11 +22,7 @@ class Main extends Component {
   {
     return (
       <div>
-        <Navbar dark color="primary">
-          <div className="container">
-            <NavbarBrand href= "/">Ristorante Confusion</NavbarBrand>
-          </div>
-        </Navbar>
+        <Header />
   
         <Menu dishes = {this.state.dishes} onClick={(dish) => this.onSelectDish(dish)} />
 

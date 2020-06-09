@@ -7,7 +7,7 @@ class Header extends Component {
             <>
                 <Navbar dark color="dark">
                     <div className="container">
-                        <NavbarBrand href= "#">Ristorante Confusion</NavbarBrand>
+                        <NavbarBrand href= "/">Ristorante Confusion</NavbarBrand>
                     </div>
                 </Navbar>
 

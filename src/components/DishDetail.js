@@ -5,11 +5,11 @@ import '../App.css'
 class DishDetail extends Component 
 {
     
-    renderDish(dish) 
+    renderDish(flag) 
         { 
-        //console.log(dish);
+            let dish=flag[0];
         if (dish != null)
-            {   //console.log(dish.comments);
+            {   console.log(dish);
                 return(
                     <Card key={dish.id}>
                         <CardImg top src={dish.image} alt={dish.name} className="pic"/>
@@ -25,22 +25,21 @@ class DishDetail extends Component
                         
 
            
-    renderComments(dish) 
+    renderComments(comms) 
         {
-        if (dish != null)
+        if (comms != null)
             {
-            let comslist = dish.comments.map((cur)=>{
+            let comslist = comms.map((cur) => {
                 return(
                     <div key={cur.id}>
-                        <p>{cur.comment} <br/>
+                        <p> {cur.comment} <br/>
                         Rating : {cur.rating} <br/>
                         Author : {cur.author} <br/>
                         Date : {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cur.date)))}
-                        </p>
-                        
-                    </div>                           
-                    );                       
-                 });
+                        </p>                        
+                    </div>  
+                );
+            });
             return (
                     <div className="text-center">
                         <h2>Comments</h2>
@@ -60,7 +59,7 @@ class DishDetail extends Component
                           { this.renderDish(this.props.dish) }
                       </div>
                       <div className="col-12 col-md-5"> 
-                          { this.renderComments(this.props.dish) } 
+                          { this.renderComments(this.props.comments) } 
                       </div>  
                   </div>
               </div>

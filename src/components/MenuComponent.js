@@ -1,11 +1,12 @@
 import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 let Menu = (props) => {
   const menu = props.dishes.map((dish) => {
       return (
         <div key={dish.id} className="col-12 col-md-5 m-1">
-          <RenderMenuItem dish={dish} onClick={props.onClick} />
+          <RenderMenuItem dish={dish} />
         </div>
       );
   });
@@ -19,24 +20,18 @@ let Menu = (props) => {
               );
 }
 
-let RenderMenuItem = ({dish , onClick}) => {
+let RenderMenuItem = ({dish}) => {
   return(
-  <Card key= "dish.id" onClick = {() => onClick(dish)} >
-    <CardImg width="50%" src={dish.image} alt={dish.name} />
-    <CardImgOverlay>
-      <CardTitle>{dish.name}</CardTitle>
-    </CardImgOverlay>
+  <Card key= "dish.id" >
+    <Link to = {`menu/${dish.id}`} >
+      <CardImg width="50%" src={dish.image} alt={dish.name} />
+      <CardImgOverlay>
+        <CardTitle><h4>{dish.name}</h4></CardTitle>
+      </CardImgOverlay>
+    </Link>
   </Card> 
+  
   );
 }
               
-export default Menu;
-
-            
-            
-            
-
-
-           
-    
-              
+export default Menu;           

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 let Menu = (props) => {
@@ -13,6 +13,13 @@ let Menu = (props) => {
               
      return (
        <div className="container">
+        <div className= "row">
+          <Breadcrumb>
+            <BreadcrumbItem> <Link to ="/home">Home</Link> </BreadcrumbItem>
+            <BreadcrumbItem active>Menu</BreadcrumbItem>
+          </Breadcrumb>
+        </div>
+        <h3 className="mt-2 mb-4">Menu</h3>
          <div className="row">
             {menu}
          </div>

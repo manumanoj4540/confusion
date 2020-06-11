@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom'
 import '../App.css'
 
 class DishDetail extends Component 
@@ -14,7 +15,7 @@ class DishDetail extends Component
                     <Card key={dish.id}>
                         <CardImg top src={dish.image} alt={dish.name} className="pic"/>
                         <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
+                        <CardTitle><b>{dish.name}</b></CardTitle>
                         <CardText>{dish.description}</CardText>
                         </CardBody>
                     </Card>
@@ -54,6 +55,13 @@ class DishDetail extends Component
     
       return(
               <div className="container" >
+                <div className= "row">
+                    <Breadcrumb>
+                        <BreadcrumbItem> <Link to ="/home">Home</Link> </BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{this.props.dish[0].id}</BreadcrumbItem>
+                    </Breadcrumb>
+                </div>
                   <div className= "row">
                       <div className="col-12 col-md-5">
                           { this.renderDish(this.props.dish) }

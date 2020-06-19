@@ -3,49 +3,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbIte
 import { Link } from 'react-router-dom'
 import '../App.css'
 
-class DishDetail extends Component 
-{
-    constructor(props){
-        super(props);
-        this.toggleModal = this.toggleModal.bind(this);
-        this.state = {
-            isModalOpen : false
-        }
-    }
-
-    toggleModal(){
-        this.setState({isModalOpen : !this.state.isModalOpen})
-    }
-
-    handleSubmit(event) 
-        {
-        this.toggleModal();
-        alert("Username: " + this.username.value + " Rating: " + this.rating.value + "Comment :" + this.comment.value);
-        event.preventDefault();
-        
-        }
-
-    renderDish(flag) 
-        { 
-            let dish=flag[0];
-        if (dish != null)
-            {   console.log(dish);
-                return(
-                    <Card key={dish.id}>
-                        <CardImg top src={dish.image} alt={dish.name} className="pic"/>
-                        <CardBody>
-                        <CardTitle><b>{dish.name}</b></CardTitle>
-                        <CardText>{dish.description}</CardText>
-                        </CardBody>
-                    </Card>
-                      );
-            }
-        else return(<div></div>);
-        }
-                        
-
-           
-    renderComments(comms) 
+function RenderComments({comms, addComment, dishId}) 
         {
         if (comms != null)
             {
@@ -68,7 +26,48 @@ class DishDetail extends Component
                     );
             }
         }
-                          
+
+class DishDetail extends Component 
+{
+    constructor(props){
+        super(props);
+        this.toggleModal = this.toggleModal.bind(this);
+        this.state = {
+            isModalOpen : false
+        }
+    }
+
+    toggleModal(){
+        this.setState({isModalOpen : !this.state.isModalOpen})
+    }
+
+    handleSubmit(event) 
+        {
+        this.toggleModal();
+        
+        event.preventDefault();
+        this.props.addComment(this.props.dishId, this.rating.value, this.username.value, this.comment.value);
+        
+        }
+
+    renderDish(flag) 
+        { 
+            let dish=flag[0];
+        if (dish != null)
+            {   console.log(dish);
+                return(
+                    <Card key={dish.id}>
+                        <CardImg top src={dish.image} alt={dish.name} className="pic"/>
+                        <CardBody>
+                        <CardTitle><b>{dish.name}</b></CardTitle>
+                        <CardText>{dish.description}</CardText>
+                        </CardBody>
+                    </Card>
+                      );
+            }
+        else return(<div></div>);
+        }
+                                                  
     render ()
     { 
     
@@ -86,7 +85,7 @@ class DishDetail extends Component
                           { this.renderDish(this.props.dish) }
                       </div>
                       <div className="col-12 col-md-5"> 
-                        { this.renderComments(this.props.comments) } 
+                       <RenderComments comms={this.props.comments} addComment={this.props.addComment} dishId={this.props.dish.id} /> 
                         <Button outline onClick={this.toggleModal} className="offset-4 mb-2">Submit Comment</Button>
 
                         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>

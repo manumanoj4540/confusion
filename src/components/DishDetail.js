@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label,Input } from 'reactstrap';
 import { Link } from 'react-router-dom'
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 import '../App.css'
 
 function RenderComments({comms, addComment, dishId}) 
@@ -9,19 +10,23 @@ function RenderComments({comms, addComment, dishId})
             {
             let comslist = comms.map((cur) => {
                 return(
-                    <div key={cur.id}>
-                        <p> {cur.comment} <br/>
-                        Rating : {cur.rating} <br/>
-                        Author : {cur.author} <br/>
-                        Date : {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cur.date)))}
-                        </p>                        
-                    </div>  
+                    <Fade in>
+                        <div key={cur.id}>                        
+                            <p> {cur.comment} <br/>
+                            Rating : {cur.rating} <br/>
+                            Author : {cur.author} <br/>
+                            Date : {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cur.date)))}
+                            </p>                                                
+                        </div>
+                    </Fade>                        
                 );
             });
             return (
-                    <div className="text-center">
+                    <div className="text-center">                  
                         <h2>Comments</h2>
-                        {comslist}
+                        <Stagger in>
+                            {comslist}
+                        </Stagger>
                     </div>
                     );
             }
@@ -56,13 +61,15 @@ class DishDetail extends Component
         if (dish != null)
             {   console.log(dish);
                 return(
-                    <Card key={dish.id}>
-                        <CardImg top src={dish.image} alt={dish.name} className="pic"/>
-                        <CardBody>
-                        <CardTitle><b>{dish.name}</b></CardTitle>
-                        <CardText>{dish.description}</CardText>
-                        </CardBody>
-                    </Card>
+                    <FadeTransform in transformProps={{ exitTransform: 'scale(0.5) translateY(-50%)' }}>
+                        <Card key={dish.id}>
+                            <CardImg top src={dish.image} alt={dish.name} className="pic"/>
+                            <CardBody>
+                            <CardTitle><b>{dish.name}</b></CardTitle>
+                            <CardText>{dish.description}</CardText>
+                            </CardBody>
+                        </Card>
+                    </FadeTransform>
                       );
             }
         else return(<div></div>);
